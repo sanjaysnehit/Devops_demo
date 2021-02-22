@@ -21,7 +21,7 @@ pipeline {
         stage('checkout') {
             steps {
                  script{
-                        dir("terraform")
+                        dir("Devops_demo")
                         {
                             git "https://github.com/shwetha-lab/Devops_demo.git"
                         }
