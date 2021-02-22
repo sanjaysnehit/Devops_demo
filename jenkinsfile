@@ -33,7 +33,7 @@ stage('Approval') {
 
            steps {
                script {
-                    def plan = readFile 'Devops_demo/instnce.tf/tfplan.txt'
+                    def plan = readFile 'Devops_demo/tfplan.txt'
                     input message: "Do you want to apply the plan?",
                     parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
                }
