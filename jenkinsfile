@@ -33,7 +33,7 @@ stage('Approval') {
 
            steps {
                script {
-                    def plan = readFile 'Devops_demo/tfplan.txt'
+                    def plan = readFile 'Devops_demo/instnce.tf/tfplan.txt'
                     input message: "Do you want to apply the plan?",
                     parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
                }
@@ -41,18 +41,18 @@ stage('Approval') {
        }
         stage('Plan') {
             steps {
-                sh 'pwd;cd terraform/aws-instance-first-script ; terraform init -input=false'
-                sh 'pwd;cd terraform/aws-instance-first-script ; terraform workspace new ${environment}'
-                sh 'pwd;cd terraform/aws-instance-first-script ; terraform workspace select ${environment}'
-                sh "pwd;cd terraform/aws-instance-first-script ;terraform plan -input=false -out tfplan "
-                sh 'pwd;cd terraform/aws-instance-first-script ;terraform show -no-color tfplan > tfplan.txt'
+                sh 'pwd;cd terraform/Devops_demo ; terraform init -input=false'
+                sh 'pwd;cd terraform/Devops_demo ; terraform workspace new ${environment}'
+                sh 'pwd;cd terraform/Devops_demo ; terraform workspace select ${environment}'
+                sh "pwd;cd terraform/Devops_demo ;terraform plan -input=false -out tfplan "
+                sh 'pwd;cd terraform/Devops_demo ;terraform show -no-color tfplan > tfplan.txt'
             }
         }
         
 
         stage('Apply') {
             steps {
-                sh "pwd;cd Devops_demo ; terraform apply -input=false tfplan"
+                sh "pwd;cd terraform/Devops_demo ; terraform apply -input=false tfplan"
             }
         }
     }
