@@ -4,11 +4,11 @@ pipeline {
        
         stage('Plan') {
             steps {
-                bat "cd;cd terraform/Devops_demo ; terraform init -input=false'
-                bat "cd;cd terraform/Devops_demo ; terraform workspace new ${environment}'
-                bat "cd;cd terraform/Devops_demo ; terraform workspace select ${environment}'
+                bat "cd;cd terraform/Devops_demo ; terraform init -input=false"
+                bat "cd;cd terraform/Devops_demo ; terraform workspace new ${environment}"
+                bat "cd;cd terraform/Devops_demo ; terraform workspace select ${environment}"
                 bat "cd;cd terraform/Devops_demo ; terraform plan -input=false -out tfplan "
-                bat "cd;cd terraform/Devops_demo ; terraform show -no-color tfplan > tfplan.txt'
+                bat "cd;cd terraform/Devops_demo ; terraform show -no-color tfplan > tfplan.txt"
             }
         }
         
