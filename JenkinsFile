@@ -4,17 +4,17 @@ pipeline {
        
         stage('Plan') {
             steps {
-                bat "cd terraform"
-                bat "cd terraform && terraform init -input=false"
-                bat "cd terraform && terraform plan -input=false -out tfplan "
-                bat "cd terraform && terraform show -no-color tfplan > tfplan.txt"
+                sh "cd terraform"
+                sh "cd terraform && terraform init -input=false"
+                sh "cd terraform && terraform plan -input=false -out tfplan "
+                sh "cd terraform && terraform show -no-color tfplan > tfplan.txt"
             }
         }
         
 
         stage('Apply') {
             steps {
-                bat "cd terraform && terraform apply -input=false tfplan"
+                sh "cd terraform && terraform apply -input=false tfplan"
             }
         }
     }
